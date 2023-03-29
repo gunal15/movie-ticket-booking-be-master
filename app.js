@@ -33,7 +33,7 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-app.post('/addmovies', async (req, res) => {
+app.post('/movies', async (req, res) => {
   try {
     const newMovie = req.body;
     const result = await db.collection('movies').insertOne(newMovie);
