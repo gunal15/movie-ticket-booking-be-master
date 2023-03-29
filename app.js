@@ -8,6 +8,7 @@ dotenv.config();
 var cors = require('cors')
 const connectDb = require('./library/db')
 connectDb()
+const moviesRouter = require('./routes/movies');
 
 
 var indexRouter = require('./routes/index');
@@ -28,6 +29,7 @@ app.use(cors())
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+app.use('/movies', moviesRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
