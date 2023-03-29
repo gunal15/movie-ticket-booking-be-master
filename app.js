@@ -33,6 +33,17 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
+app.post('/addmovies', async (req, res) => {
+  try {
+    const newMovie = req.body;
+    const result = await db.collection('movies').insertOne(newMovie);
+    res.status(201).json(result.ops[0]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
